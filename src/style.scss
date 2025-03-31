@@ -1,0 +1,5 @@
+$my-primary-color: rgb(231, 143, 158);
+@import "bootstrap/scss/bootstrap";
+body {
+  background-color: $my-primary-color;
+}
