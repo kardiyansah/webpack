@@ -3,3 +3,9 @@ $my-primary-color: rgb(231, 143, 158);
 body {
   background-color: $my-primary-color;
 }
+
+.logo {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  display: block;
+}
