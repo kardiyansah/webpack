@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkwebpack=self.webpackChunkwebpack||[]).push([[753],{807:(e,l,p)=>{var s=p(543),c=p.n(s);console.log(c().toUpper("hello world"))}},e=>{e(e.s=807)}]);

@@ -2,7 +2,18 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 module.exports = {
-  entry: "./src/index.js",
+  entry: {
+    main: {
+      import: "./src/index.js",
+      dependOn: "shared",
+    },
+    vendor: "./src/vendor.js",
+    hello: {
+      import: "./src/hello.js",
+      dependOn: "shared",
+    },
+    shared: "lodash",
+  },
   plugins: [
     new HtmlWebpackPlugin({
       template: "./src/template.html",
@@ -39,5 +50,10 @@ module.exports = {
         type: "asset/resource",
       },
     ],
+  },
+  optimization: {
+    splitChunks: {
+      chunks: "all",
+    },
   },
 };

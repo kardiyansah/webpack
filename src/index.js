@@ -1,4 +1,5 @@
-import * as bootstrap from "bootstrap";
+import vendor from "./vendor.js";
+import _ from "lodash";
 import scss from "./style.scss";
 
 import { AlertService } from "./app/alert.service.js";

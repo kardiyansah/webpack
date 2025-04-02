@@ -9,8 +9,9 @@ module.exports = merge(config, {
   devtool: "inline-source-map",
   output: {
     path: path.resolve(__dirname, "dist"),
-    filename: "main.js",
+    filename: "js/[name].js",
     assetModuleFilename: "img/[name][ext]",
+    clean: true,
   },
   devServer: {
     static: {
@@ -20,5 +21,9 @@ module.exports = merge(config, {
     port: 3000,
     liveReload: true,
   },
-  plugins: [new MiniCssExtractPlugin()],
+  plugins: [
+    new MiniCssExtractPlugin({
+      filename: "css/[name].css",
+    }),
+  ],
 });
