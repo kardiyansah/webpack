@@ -1,8 +1,16 @@
 const path = require("path");
+const glob = require("glob");
 const config = require("./webpack.config");
 
+const ImageMinimizerPlugin = require("image-minimizer-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
+const { PurgeCSSPlugin } = require("purgecss-webpack-plugin");
 const { merge } = require("webpack-merge");
+
+const PATHS = {
+  src: path.join(__dirname, "src"),
+};
 
 module.exports = merge(config, {
   mode: "production",
@@ -12,9 +20,23 @@ module.exports = merge(config, {
     assetModuleFilename: "img/[name]-[hash][ext]",
     clean: true,
   },
+  optimization: {
+    minimizer: [
+      `...`,
+      new CssMinimizerPlugin(),
+      new ImageMinimizerPlugin({
+        minimizer: {
+          implementation: ImageMinimizerPlugin.sharpMinify,
+        },
+      }),
+    ],
+  },
   plugins: [
     new MiniCssExtractPlugin({
       filename: "css/[name].[contenthash].css",
+    }),
+    new PurgeCSSPlugin({
+      paths: glob.sync(`${PATHS.src}/**/*`, { nodir: true }),
     }),
   ],
 });
